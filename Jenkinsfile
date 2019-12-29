@@ -33,5 +33,6 @@ pipeline {
            steps {
                sh 'docker run -d --name hello -p 8080:8080 hello:${GIT_COMMIT}'
            }
-       } 
+       }
+    } 
 }
