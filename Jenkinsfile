@@ -24,10 +24,14 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
+        stage('Docker Build') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
+                sh 'docker build . -t hello:${GIT_COMMIT}'
             }
         }
+       stage('Deploy Container') {
+           steps {
+               sh 'docker run -d --name hello -p 8080:8080 hello:${GIT_COMMIT}'
+       }
     }
 }
