@@ -16,14 +16,12 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh '#!/bin/bash'
-                sh 'docker build . -t hello:${GIT_COMMIT}'
+                sh 'sudo docker build . -t hello:${GIT_COMMIT}'
             }
         }
         stage('Deploy Container') {
             steps {
-                sh '#!/bin/bash'
-                sh 'docker run -d --name hello -p 8080:8080 hello:${GIT_COMMIT}'
+                sh 'sudo docker run -d --name hello -p 8080:8080 hello:${GIT_COMMIT}'
             }
         }
     }
