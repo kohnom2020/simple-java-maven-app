@@ -1,9 +1,10 @@
 pipeline {
-    agent {label 'centos7-01'}
+    agent {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
         }
+    }
     options {
         skipStagesAfterUnstable()
     }
