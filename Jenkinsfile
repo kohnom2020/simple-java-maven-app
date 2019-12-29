@@ -1,10 +1,9 @@
 pipeline {
-    agent {
+    agent {label 'centos7-01'}
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
         }
-    }
     options {
         skipStagesAfterUnstable()
     }
@@ -21,7 +20,7 @@ pipeline {
         }
         stage('Deploy Container') {
             steps {
-                sh "docker run -d --name hello -p 8080:8080 hello:${GIT_COMMIT}"
+                sh "docker run -d --name hello -p 8090:8080 hello:${GIT_COMMIT}"
             }
         }
     }
